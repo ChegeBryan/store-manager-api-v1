@@ -2,6 +2,9 @@
 
 import unittest
 
+from app.api.model.products import Product
+from app.api.db.mock_db import PRODUCTS
+
 
 class TestProductModel(unittest.TestCase):
     """
