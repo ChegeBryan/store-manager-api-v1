@@ -8,6 +8,9 @@ class ProductApiTestCase(unittest.TestCase):
     Class for  product endpoints cases
     """
     def setUp(self):
+        """
+        Defines the product variables and initializes app
+        """
         self.app = create_app('testing')
         self.client = self.app.test_client()
         self.product = {
@@ -20,6 +23,10 @@ class ProductApiTestCase(unittest.TestCase):
         }
 
     def test_api_create_entry(self):
+        """
+        Test api can create a product (POST Request)
+        :return: 201 Status code
+        """
         response = self.client.post(
             '/api/v1/products',
             json=self.product
@@ -27,8 +34,23 @@ class ProductApiTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 201)
 
     def test_api_get_all_entry(self):
+        """
+        Test api can get all product entries (GET Request)
+        :return: 200 Ok
+        """
         response = self.client.get(
             '/api/v1/products',
+            json=self.product
+        )
+        self.assertEqual(response.status_code, 200)
+
+    def test_api_can_get_a_product_by_id(self):
+        """
+        Test api can get a single entry by id (GET Request)
+        :return: 200 Ok
+        """
+        response = self.client.get(
+            '/api/v1/products/1',
             json=self.product
         )
         self.assertEqual(response.status_code, 200)

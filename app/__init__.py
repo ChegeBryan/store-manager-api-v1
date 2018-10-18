@@ -32,5 +32,4 @@ def create_app(config_name):
     api.add_namespace(product_ns, path='/api/v1')
     app.register_blueprint(blueprint)
 
-
     return app
