@@ -21,3 +21,11 @@ class ProductList(Resource):
     def get(self):
         """List all products"""
         return get_all_products()
+
+    @api.response(201, 'Product registered success')
+    @api.doc('create a new product')
+    @api.expect(_product, validate=True)
+    def post(self):
+        """Creates new product"""
+        data = request.json
+        return save_new_product(data=data)
