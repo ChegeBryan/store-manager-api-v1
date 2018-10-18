@@ -1,1 +1,1 @@
-# products endpoints
+# Products endpoints
