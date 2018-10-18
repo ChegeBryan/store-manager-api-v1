@@ -25,5 +25,10 @@ def get_all_products():
     return mock_db.PRODUCTS, 200
 
 
+def get_by_product_id(product_id):
+    product = [product for product in mock_db.PRODUCTS if product['product_id'] == product_id]
+    return product
+
+
 def save_changes(data):
     mock_db.PRODUCTS.append(data)
