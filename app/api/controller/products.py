@@ -31,7 +31,7 @@ class ProductList(Resource):
         return save_new_product(data=data)
 
 
-@api.route('/products/<product_id>')
+@api.route('/products/<int:product_id>')
 @api.param('product_id', 'The product identifier')
 @api.response(404, 'Product not found.')
 class Product(Resource):
