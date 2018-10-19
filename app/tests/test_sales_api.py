@@ -2,7 +2,7 @@
 
 import unittest
 from app import create_app
-from app.api.db.mock_db import SALEITEMS
+from app.api.db.mock_db import SALES
 
 
 class SalesApiTestCase(unittest.TestCase):
@@ -15,13 +15,13 @@ class SalesApiTestCase(unittest.TestCase):
         """
         self.app = create_app('testing')
         self.client = self.app.test_client()
-        self.sales_order_item = {
-            'sale_order_items_id': 1,
-            'product_id': 1,
+        self.sales_order = {
+            'sale_id': 1,
+            'product_name': 'just another one',
             'quantity': 3,
             'price_per_unit': 1000,
-            'sale_order_id': 3,
-            'user_id': 1
+            'total_price': 3000,
+            'sale_by': 'bryan'
         }
 
     def test_api_create_new_sale_order_item(self):
@@ -31,7 +31,7 @@ class SalesApiTestCase(unittest.TestCase):
         """
         response = self.client.post(
             '/api/v1/sales',
-            json=self.sales_order_item
+            json=self.sales_order
         )
         self.assertEqual(response.status_code, 201)
 
@@ -42,7 +42,7 @@ class SalesApiTestCase(unittest.TestCase):
         """
         response = self.client.get(
             '/api/v1/sales',
-            json=self.sales_order_item
+            json=self.sales_order
         )
         self.assertEqual(response.status_code, 200)
 
@@ -53,9 +53,9 @@ class SalesApiTestCase(unittest.TestCase):
         """
         response = self.client.get(
             '/api/v1/products/1',
-            json=self.sales_order_item
+            json=self.sales_order
         )
         self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
-        SALEITEMS[:] = []
+        SALES[:] = []

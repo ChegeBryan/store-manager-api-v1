@@ -12,7 +12,7 @@ class TestProductModel(unittest.TestCase):
     """
     def setUp(self):
         self.new_product = Product(1, 'product name', 'mini description',
-                                   'description', 234)
+                                   'description', 234, 4, 3)
 
     def test_product_object_creation(self):
         """
