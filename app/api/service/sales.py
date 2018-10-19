@@ -35,6 +35,16 @@ def get_all_sale_order_items():
     return mock_db.SALEITEMS, 200
 
 
+def get_by_sale_order_items_id(sale_order_items_id):
+    """
+    method returns a single product in the product list
+    :param sale_order_items_id: the key to identify the product to return
+    :return: single product
+    """
+    sales_order_items = [order_items for order_items in mock_db.SALEITEMS if order_items['sale_order_items_id'] == sale_order_items_id]
+    return sales_order_items
+
+
 def save_changes(data):
     """
     save the single sale order items making a list of dictionaries
