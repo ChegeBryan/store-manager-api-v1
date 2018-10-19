@@ -11,7 +11,9 @@ def save_new_product(data):
         product_name=data['product_name'],
         mini_description=data['mini_description'],
         description=data['description'],
-        price_per_unit=data['price_per_unit']
+        price_per_unit=data['price_per_unit'],
+        quantity_in_stock=data['quantity_in_stock'],
+        stock_low_alert_at=data['stock_low_alert_at']
     )
     save_changes(new_product)
     response_object = {

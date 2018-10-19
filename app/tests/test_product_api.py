@@ -16,10 +16,11 @@ class ProductApiTestCase(unittest.TestCase):
         self.product = {
             "product_id": 1,
             "product_name": "Macbook 2017",
-            "mini_description": "Macbook 2017, retina dislay",
+            "mini_description": "Macbook 2017, retina display",
             "description": "Macbook 2017, retina display, 16 GB Ram, 512 GB",
             "price_per_unit": 99999,
-            "limited": False
+            "quantity_in_stock": 3,
+            "stock_low_level_at": 6
         }
 
     def test_api_create_entry(self):
