@@ -18,6 +18,7 @@ def create_app(config_name):
 
     # import the namespaces
     from .api.controller.products import api as product_ns
+    from .api.controller.sales import api as sales_ns
 
     # create a blueprint instance
     blueprint = Blueprint('api', __name__)
@@ -29,7 +30,10 @@ def create_app(config_name):
               description='store manager api')
 
     # add product namespace to the namespaces and define a prefix url
+    # add sales namespace to the namespaces and define a prefix url
     api.add_namespace(product_ns, path='/api/v1')
+    api.add_namespace(sales_ns, path='/api/v1')
+
     app.register_blueprint(blueprint)
 
     return app
