@@ -8,3 +8,5 @@ PRODUCTS = [
         "limited": False
     },
 ]
+
+SALEITEMS = []
