@@ -27,6 +27,14 @@ def save_new_sale_order_items(data):
     return response_object, 201
 
 
+def get_all_sale_order_items():
+    """
+    this method gets and returns all the sale-order-items in the saleitems list
+    :return:
+    """
+    return mock_db.SALEITEMS, 200
+
+
 def save_changes(data):
     """
     save the single sale order items making a list of dictionaries
