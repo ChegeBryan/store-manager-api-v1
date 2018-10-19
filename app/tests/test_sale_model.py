@@ -4,6 +4,7 @@ import unittest
 
 from app.api.model.sales import SaleOrderItems
 from app.api.db.mock_db import SALEITEMS
+from app.api.service.sales import save_changes
 
 
 class TestSaleModel(unittest.TestCase):
@@ -33,7 +34,7 @@ class TestSaleModel(unittest.TestCase):
         self.assertEqual(self.new_sale_order_items.user_id, 2)
 
     def test_save_sale_order_items(self):
-        SALEITEMS.append(self.new_sale_order_items)
+        save_changes(self.new_sale_order_items)
         self.assertEqual(len(SALEITEMS), 1)
 
     def test_save_multiple_sale_order_items(self):
@@ -42,9 +43,9 @@ class TestSaleModel(unittest.TestCase):
         objects to our SaleOrderItems
         """
 
-        SALEITEMS.append(self.new_sale_order_items)
-        new_test_contact = SaleOrderItems(1, 2, 4, 1000, 1, 2)  # new sale order item
-        SALEITEMS.append(new_test_contact)
+        save_changes(self.new_sale_order_items)
+        test_sale_order_items = SaleOrderItems(1, 2, 4, 1000, 1, 2)  # new sale order item
+        save_changes(test_sale_order_items)
         self.assertEqual(len(SALEITEMS), 2)
 
     def tearDown(self):
