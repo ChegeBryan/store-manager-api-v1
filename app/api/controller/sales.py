@@ -20,3 +20,11 @@ class SalesList(Resource):
     def get(self):
         """List all the sale order items"""
         return get_all_sale_order_items()
+
+    @api.response(201, 'Sale order registered success')
+    @api.doc('Create new sale order items')
+    @api.expect(_sale, validate=True)
+    def post(self):
+        """Creates new sale order items"""
+        data = request.json
+        return save_new_sale_order_items(data=data)

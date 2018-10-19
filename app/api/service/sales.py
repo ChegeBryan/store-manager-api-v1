@@ -13,7 +13,7 @@ def save_new_sale_order_items(data):
 
     new_sale_order_items = SaleOrderItems(
         sale_order_items_id=data['sale_order_items_id'],
-        product_id=data['product_name'],
+        product_id=data['product_id'],
         quantity=data['quantity'],
         price_per_unit=data['price_per_unit'],
         sale_order_id=data['sale_order_id'],
