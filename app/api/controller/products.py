@@ -5,7 +5,7 @@ from flask_restplus import Resource
 
 
 from ..utils.dto import ProductDto
-from ..service.products import save_new_product, get_all_products
+from ..service.products import save_new_product, get_all_products, get_by_product_id
 
 api = ProductDto.api
 _product = ProductDto.product
@@ -29,3 +29,21 @@ class ProductList(Resource):
         """Creates new product"""
         data = request.json
         return save_new_product(data=data)
+
+
+@api.route('/products/<product_id>')
+@api.param('product_id', 'The product identifier')
+@api.response(404, 'Product not found.')
+class Product(Resource):
+    @api.doc('get a product')
+    @api.marshal_with(_product)
+    def get(self, product_id):
+        """get a product given its identifier"""
+        product = get_by_product_id(product_id)
+
+        # Show an error message if no product found with that id
+        # else returns the product
+        if not product:
+            api.abort(404)
+        else:
+            return product

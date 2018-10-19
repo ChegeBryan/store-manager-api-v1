@@ -5,6 +5,7 @@ from flask_restplus import Namespace, fields
 class ProductDto:
     api = Namespace('product', description='product related operations')
     product = api.model('product', {
+        'product_id': fields.Integer(required=True, description='product identifier'),
         'product_name': fields.String(required=True, description='product name'),
         'mini_description': fields.String(required=True, description='short product description'),
         'description': fields.String(required=True, description='detailed product description'),
