@@ -2,7 +2,7 @@
 
 import unittest
 from app import create_app
-from app.api.db.mock_db import SALES
+from app.api.db.mock_db import MockDb
 
 
 class SalesApiTestCase(unittest.TestCase):
@@ -58,4 +58,4 @@ class SalesApiTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
-        SALES[:] = []
+        MockDb.SALES[:] = []

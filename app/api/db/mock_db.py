@@ -18,6 +18,7 @@ class MockDb:
             if product.display_product()['product_id'] == _id:
                 return product
 
+
 SALES = [
     {
         "sale_id": 1,

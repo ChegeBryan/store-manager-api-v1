@@ -1,6 +1,5 @@
 import unittest
 from app import create_app
-from app.api.db.mock_db import PRODUCTS
 
 
 class ProductApiTestCase(unittest.TestCase):
@@ -57,6 +56,6 @@ class ProductApiTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
-        PRODUCTS[:] = []
+        pass
 
 
