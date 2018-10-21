@@ -1,6 +1,6 @@
 # defines the logic for the sales model
 
-from app.api.db import mock_db
+from app.api.db.mock_db import MockDb
 from app.api.model.sales import Sale
 
 
@@ -32,7 +32,7 @@ def get_all_sales():
     this method gets and returns all the sale-items in the sale items list
     :return:
     """
-    return mock_db.SALES, 200
+    return MockDb.SALES, 200
 
 
 def get_by_sale_id(sale_id):
@@ -41,7 +41,7 @@ def get_by_sale_id(sale_id):
     :param sale_id: the key to identify the product to return
     :return: single product
     """
-    item = [item for item in mock_db.SALES if item['sale_id'] == sale_id]
+    item = MockDb.get_sale_by_id(sale_id)
     return item
 
 
@@ -49,4 +49,4 @@ def save_changes(data):
     """
     save the single sale order items making a list of dictionaries
     """
-    mock_db.SALES.append(data)
+    MockDb.SALES.append(data)
