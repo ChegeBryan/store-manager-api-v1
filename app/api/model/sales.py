@@ -13,3 +13,17 @@ class Sale:
         self.price_per_unit = price_per_unit
         self.total_price = total_price
         self.sale_by = sale_by
+
+    def display_sales(self):
+        """
+        Sales entry in json
+        :return:
+        """
+        return {
+            'sale_id': self.sale_id,
+            'product_name': self.product_name,
+            'quantity': self.quantity,
+            'price_per_unit': self.price_per_unit,
+            'total_price': self.total_price,
+            'sale_by': self.sale_by
+        }
