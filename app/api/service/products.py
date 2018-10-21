@@ -38,7 +38,11 @@ def get_by_product_id(product_id):
     :return: single product
     """
     product = MockDb.get_product_by_id(product_id)
-    return product
+    if not product:
+        return {
+            'message': 'No product found!'
+        }, 404
+    return product, 200
 
 
 def save_changes(data):
