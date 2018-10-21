@@ -1,23 +1,22 @@
-PRODUCTS = [
-    {
-        "product_id": 1,
-        "product_name": "Macbook 2017",
-        "mini_description": "Macbook 2017, retina dislay",
-        "description": "Macbook 2017, retina display, 16 GB Ram, 512 GB",
-        "price_per_unit": 99999,
-        "quantity_in_stock": 3,
-        "stock_low_alert_at": 6,
-    },
-    {
-        "product_id": 2,
-        "product_name": "Macbook 2017",
-        "mini_description": "Macbook 2017, retina dislay",
-        "description": "Macbook 2017, retina display, 16 GB Ram, 512 GB",
-        "price_per_unit": 99999,
-        "quantity_in_stock": 3,
-        "stock_low_alert_at": 6,
-    },
-]
+from app.api.model.products import Product
+
+
+class MockDb:
+    """
+    Class that hold methods that will help in mock database manipulation
+    """
+    PRODUCTS = []
+
+    @classmethod
+    def get_product_by_id(cls, _id):
+        """
+        Loops through contents in the Product list checking for an id match
+        :param _id: product identifier
+        :return: product with a certain id
+        """
+        for product in cls.PRODUCTS:
+            if product.display_product()['product_id'] == _id:
+                return product
 
 SALES = [
     {
