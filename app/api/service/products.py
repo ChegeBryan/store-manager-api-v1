@@ -1,5 +1,5 @@
 # defines the logic for the products model
-from app.api.db import mock_db
+from app.api.db.mock_db import MockDb
 from app.api.model.products import Product
 
 
@@ -28,7 +28,7 @@ def get_all_products():
     this method gets returns all the products in the product list
     :return: list of all products
     """
-    return mock_db.PRODUCTS, 200
+    return MockDb.PRODUCTS, 200
 
 
 def get_by_product_id(product_id):
@@ -37,8 +37,12 @@ def get_by_product_id(product_id):
     :param product_id: the key to identify the product to return
     :return: single product
     """
-    product = [product for product in mock_db.PRODUCTS if product['product_id'] == product_id]
-    return product
+    product = MockDb.get_product_by_id(product_id)
+    if not product:
+        return {
+            'message': 'No product found!'
+        }, 404
+    return product, 200
 
 
 def save_changes(data):
@@ -46,4 +50,4 @@ def save_changes(data):
     Save the single products inside the product list making a list of dictionaries
     :param data:
     """
-    mock_db.PRODUCTS.append(data)
+    MockDb.PRODUCTS.append(data)

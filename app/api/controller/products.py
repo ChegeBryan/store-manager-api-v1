@@ -39,11 +39,4 @@ class Product(Resource):
     @api.marshal_with(_product)
     def get(self, product_id):
         """get a product given its identifier"""
-        product = get_by_product_id(product_id)
-
-        # Show an error message if no product found with that id
-        # else returns the product
-        if not product:
-            api.abort(404)
-        else:
-            return product
+        return get_by_product_id(product_id)

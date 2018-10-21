@@ -3,7 +3,7 @@
 import unittest
 
 from app.api.model.sales import Sale
-from app.api.db.mock_db import SALES
+from app.api.db.mock_db import MockDb
 from app.api.service.sales import save_changes
 
 
@@ -33,7 +33,7 @@ class TestSaleModel(unittest.TestCase):
 
     def test_save_sale(self):
         save_changes(self.new_sale)
-        self.assertEqual(len(SALES), 1)
+        self.assertEqual(len(MockDb.SALES), 1)
 
     def test_save_multiple_sales(self):
         """
@@ -44,9 +44,9 @@ class TestSaleModel(unittest.TestCase):
         save_changes(self.new_sale)
         test_sale = Sale(1, 'a toy', 4, 1000, 4000, 'me')  # new sale
         save_changes(test_sale)
-        self.assertEqual(len(SALES), 2)
+        self.assertEqual(len(MockDb.SALES), 2)
 
     def tearDown(self):
-        SALES[:] = []
+        MockDb.SALES[:] = []
 
 

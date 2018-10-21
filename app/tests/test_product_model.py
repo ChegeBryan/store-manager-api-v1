@@ -3,7 +3,8 @@
 import unittest
 
 from app.api.model.products import Product
-from app.api.db.mock_db import PRODUCTS
+from app.api.db.mock_db import MockDb
+from app.api.service.products import save_changes
 
 
 class TestProductModel(unittest.TestCase):
@@ -22,8 +23,8 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(self.new_product.product_id, 1)
 
     def test_product_saved(self):
-        PRODUCTS.append(self.new_product)
-        self.assertEqual(len(PRODUCTS), 1)
+        save_changes(self.new_product)
+        self.assertEqual(len(MockDb.PRODUCTS), 1)
 
     def tearDown(self):
-        PRODUCTS[:] = []
+        MockDb.PRODUCTS[:] = []
